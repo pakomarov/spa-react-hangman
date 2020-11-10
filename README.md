@@ -1,3 +1,8 @@
+### Tutorial: "[Build Hangman With React](https://youtu.be/jj0W8tYX_q8)" by [Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
+
+[Check out running project!](https://hangman-kpa.glitch.me)
+[Check out on Glitch!](https://glitch.com/~hangman-kpa)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
