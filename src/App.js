@@ -10,14 +10,8 @@ import Popup from './components/Popup';
 const WORDS = ['application', 'programming', 'interface', 'wizard'];
 const MAX_MISTAKE_COUNT = 6;
 
-const firstSelectedWord = getRandomWord(WORDS);
-
-function getRandomWord(words) {
-  return words[Math.floor(Math.random() * words.length)];
-}
-
 function App() {
-  const [selectedWord, setSelectedWord] = useState(firstSelectedWord);
+  const [selectedWord, setSelectedWord] = useState(() => getRandomWord(WORDS));
   const [gameStatus, setGameStatus] = useState('playing');
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
@@ -31,7 +25,7 @@ function App() {
   
         if (selectedWord.includes(letter)) {
           if (!correctLetters.includes(letter)) {
-            setCorrectLetters([...correctLetters, letter])
+            setCorrectLetters(prevCorrectLetters => [...prevCorrectLetters, letter])
           } else {
             if (!hasNotification) {
               showNotification(setHasNotification);
@@ -39,7 +33,7 @@ function App() {
           }
         } else {
           if (!wrongLetters.includes(letter)) {
-            setWrongLetters([...wrongLetters, letter]);
+            setWrongLetters(prevWrongLetters => [...prevWrongLetters, letter]);
           } else {
             if (!hasNotification) {
               showNotification(setHasNotification);
@@ -80,6 +74,11 @@ function App() {
       <Notification show={hasNotification} />
     </>
   );
+}
+
+
+function getRandomWord(words) {
+  return words[Math.floor(Math.random() * words.length)];
 }
 
 function showNotification(setter) {
